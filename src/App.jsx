@@ -1,17 +1,30 @@
 import Header from "./components/Header"
 import Guitar from "./components/Guitar"
-import { useState } from "react"
+import { db } from "./data/db"
+import { useState, useEffect, use } from "react"
 
 
 function App() {
 
 
     //State
+    const [auth, setAuth] = useState(false);
+    const [data, setData] = useState(db);
 
-    if(auth) {
-        
-    }
+    useEffect(() => {
+        console.log('Componente Listo ó escuchando por Auth')
+    }, [auth]);
 
+
+    setTimeout(() => {
+        setAuth(true)
+    }, 3000);
+
+    // console.log(auth);
+
+
+
+    //RETURN
   return (
     <>
     <Header />
@@ -20,7 +33,13 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-            <Guitar/>
+            {data.map((guitar) => (
+                <Guitar
+                key={guitar.id}
+                guitar={guitar}
+                />
+            ))}
+            
         </div>
     </main>
 
