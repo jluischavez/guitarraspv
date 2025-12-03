@@ -8,19 +8,10 @@ function App() {
 
 
     //State
-    const [auth, setAuth] = useState(false);
     const [data, setData] = useState(db);
-
-    useEffect(() => {
-        console.log('Componente Listo ó escuchando por Auth')
-    }, [auth]);
+    const [cart, setCart] = useState([]);
 
 
-    setTimeout(() => {
-        setAuth(true)
-    }, 3000);
-
-    // console.log(auth);
 
 
 
@@ -37,6 +28,7 @@ function App() {
                 <Guitar
                 key={guitar.id}
                 guitar={guitar}
+                setCart={setCart}
                 />
             ))}
             
